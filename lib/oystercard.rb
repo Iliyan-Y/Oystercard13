@@ -22,16 +22,20 @@ class Oystercard
   def touch_in(station)
     fail "You need to top up" if @balance < MIN_BALANCE
     @journey.start_trip(station)
-    if @counter > 1
-      deduct(@journey.fare)
-    end
-    @counter += 1
+    touch_in_counter
   end
 
   def touch_out(station)
     @journey.end_trip(station)
     deduct(@journey.fare)
     @counter = 1
+  end
+
+  def touch_in_counter
+    if @counter > 1
+      deduct(@journey.fare)
+    end
+    @counter += 1
   end
 
   def log

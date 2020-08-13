@@ -8,7 +8,7 @@ class Journey
   def initialize
     @entry_station
     @exit_station
-    @journey_history = nil
+    @journey_history
     @journey_log = JourneyLog.new
   end
 
@@ -26,15 +26,20 @@ class Journey
 
   def fare
     create_trip
+    add_journey  
+    calc_penalty_fare  
+  end
+
+  def add_journey
     @journey_log.add_journey(@journey_history)
-    if @journey_history[:exit_station] == "Incomplete Journey"
-      return PENALTY_FARE
-    elsif @journey_history[:entry_station] == "Incomplete Journey"
+  end
+
+  def calc_penalty_fare
+    if @journey_history[:exit_station] == "Incomplete Journey" || @journey_history[:entry_station] == "Incomplete Journey"
       return PENALTY_FARE
     else
       return zone_calc
     end
-    
   end
 
   def zone_calc
