@@ -70,8 +70,9 @@ describe Oystercard do
       end
 
       it 'reduces balance by MIN_FARE' do
-        subject.touch_in("station")
-        subject.touch_out("station")
+        station_1 = double("station_1", zone: 1)
+        subject.touch_in(station_1)
+        subject.touch_out(station_1)
         expect(subject.balance).to eq (89)
       end
     end

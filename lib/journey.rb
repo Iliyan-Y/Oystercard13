@@ -14,8 +14,6 @@ class Journey
 
   def create_trip
     @journey_history = {:entry_station => @entry_station, :exit_station => @exit_station}
-    @entry_station = nil
-    @exit_station = nil
   end
 
   def start_trip(station)
@@ -34,8 +32,15 @@ class Journey
     elsif @journey_history[:entry_station] == "Incomplete Journey"
       return PENALTY_FARE
     else
-      return MINIMUM_FARE
+      return zone_calc
     end
+    
+  end
+
+  def zone_calc
+    zone_fare = MINIMUM_FARE + (@entry_station.zone - @exit_station.zone).abs
+    @entry_station = nil
+    zone_fare
   end
 
   def log 

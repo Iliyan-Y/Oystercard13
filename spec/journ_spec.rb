@@ -19,8 +19,8 @@ describe Journey do
   describe "#end_trip" do
 
   it 'change status of oystercard in_journey? = false' do
-    subject.start_trip("station")
-    subject.end_trip("station")
+    subject.start_trip(station_1)
+    subject.end_trip(station_1)
     subject.fare
     expect(subject).not_to be_in_journey
   end
@@ -31,8 +31,8 @@ describe Journey do
 
   describe "#fare" do
     it "charges the minimum fare" do
-      subject.start_trip("Angel")
-      subject.end_trip("Stockwell")
+      subject.start_trip(station_1)
+      subject.end_trip(station_1)
       expect(subject.fare).to eq Journey::MINIMUM_FARE
     end
 
