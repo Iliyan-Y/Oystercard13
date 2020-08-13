@@ -27,8 +27,6 @@ describe Journey do
 
   end
     
-
-
   describe "#fare" do
     it "charges the minimum fare" do
       subject.start_trip(station_1)
