@@ -10,7 +10,7 @@ describe JourneyLog do
 
   describe "#add_journey" do 
     it "adds one journey to the array" do 
-      journey = double("journey")
+      journey = {entry_station: "station1", exit_station: "station2"}
       subject.add_journey(journey)
       expect(subject.journeys.count).to eq 1
     end

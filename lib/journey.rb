@@ -29,9 +29,9 @@ class Journey
   def fare
     create_trip
     @journey_log.add_journey(@journey_history)
-    if @journey_history[:exit_station] == nil
+    if @journey_history[:exit_station] == "Incomplete Journey"
       return PENALTY_FARE
-    elsif @journey_history[:entry_station] == nil
+    elsif @journey_history[:entry_station] == "Incomplete Journey"
       return PENALTY_FARE
     else
       return MINIMUM_FARE
