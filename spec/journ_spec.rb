@@ -23,19 +23,8 @@ describe Journey do
   end
 
   end
+    
 
-  describe "#journey_history" do
-    it "Expects oystercard to have an empty list of journeys to begin with" do
-      expect(subject.journey_history).to eq ([])
-    end
-
-    it "Expects that touching in and out will create one journey" do
-      subject.start_trip("Angel")
-      subject.end_trip("Stockwell")
-      subject.fare
-      expect(subject.journey_history.count).to eq (1)
-    end
-  end
 
   describe "#fare" do
     it "charges the minimum fare" do

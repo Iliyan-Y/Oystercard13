@@ -1,9 +1,8 @@
 require_relative 'journey'
-require_relative 'journeylog'
 
 class Oystercard
 
-  attr_reader :balance, :counter
+  attr_reader :balance, :counter, :journey
 
   MAX_BALANCE = 90
   MIN_BALANCE = 1
@@ -12,7 +11,6 @@ class Oystercard
     @balance = 0
     @journey = Journey.new
     @counter = 1
-    @journeylog = JourneyLog.new(@journey)
   end
 
   def top_up(amount)
@@ -33,7 +31,10 @@ class Oystercard
     @journey.end_trip(station)
     deduct(@journey.fare)
     @counter = 1
-    @journeylog.journeys
+  end
+
+  def log
+    @journey.log
   end
 
 

@@ -1,3 +1,5 @@
+require_relative "journeylog"
+
 class Journey
   MINIMUM_FARE = 1
   PENALTY_FARE = 6
@@ -7,6 +9,7 @@ class Journey
     @entry_station
     @exit_station
     @journey_history = nil
+    @journey_log = JourneyLog.new
   end
 
   def create_trip
@@ -25,6 +28,7 @@ class Journey
 
   def fare
     create_trip
+    @journey_log.add_journey(@journey_history)
     if @journey_history[:exit_station] == nil
       return PENALTY_FARE
     elsif @journey_history[:entry_station] == nil
@@ -32,6 +36,10 @@ class Journey
     else
       return MINIMUM_FARE
     end
+  end
+
+  def log 
+    @journey_log.journeys
   end
 
   def in_journey?

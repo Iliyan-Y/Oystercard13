@@ -1,13 +1,13 @@
 class JourneyLog
 
-attr_reader :journeys
+ attr_reader :journeys
 
-  def initialize(journey)
-    @journey = journey
+  def initialize
     @journeys = []
   end
 
-  def journeys
-    @journeys << @journey.journey_history
+  def add_journey(current_journey)
+    @journeys << current_journey
   end
+
 end
